@@ -1,6 +1,16 @@
 # eigen-state
 
-A bounded static checker for local state transitions and file-handle lifecycles in Python, JavaScript, and TypeScript. It reports potential defects with source locations, witness paths, assumptions, and coverage gaps. Selected source is parsed as data; analysis runs locally.
+eigen-state helps you review file-handle ownership and local state changes in Python, JavaScript, and TypeScript.
+
+## Why use it?
+
+File-handle bugs often depend on the route through a function. An early return can skip a close at the bottom; a `finally` block can close a handle just before the function returns it. Branches and exception handlers create more paths to check when reviewing or changing cleanup code.
+
+eigen-state follows supported paths through a function and reports potential lifecycle defects with source locations, branch guards, and a witness trace. That gives you a concrete path to inspect and reproduce in a regression test. Use it during code review or refactoring to examine early exits, check cleanup changes, and investigate handles that are closed twice, used after closing, or returned after cleanup has closed them.
+
+The report also gathers candidate state values and guarded transitions from literal assignments. Use those candidates to make a function’s implicit states explicit and check them against its intended contract.
+
+Analysis runs locally on explicitly selected files. Source is parsed as data and preserved. Findings carry their assumptions, and coverage gaps identify code that needs manual review. The current release supports a bounded subset of each language; the mechanism and limits below define its scope.
 
 ## Install and use
 
