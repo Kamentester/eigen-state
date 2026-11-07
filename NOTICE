@@ -1,0 +1,8 @@
+eigen-state
+
+The project uses the separately distributed tree-sitter, tree-sitter-python,
+tree-sitter-javascript, and tree-sitter-typescript packages. These dependencies
+retain their own copyright and MIT licence notices. Dependency source and licence
+metadata accompany their respective distributions. This release contains the
+checker implementation and synthetic tests; parser binaries are supplied by the
+declared dependencies.
